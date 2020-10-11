@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+  <Dialog title="{i18n>ordenes}">
+  	<content>
+		<core:Fragment fragmentName="logali.group.MyFirstProject.fragment.tableOrder" type="XML"/>
+	</content>
+    <content>
+      <Table items="{odataModel>Orders}" width="700px">
+        <columns>
+          <Column>
+            <header>
+              <Label text="{i18>id}" />
+            </header>
+          </Column>
+          <Column>
+            <header>
+              <Label text="{i18>mercancia}" />
+            </header>
+          </Column>
+          <Column>
+            <header>
+              <Label text="{i18n>direccion}" />
+            </header>
+          </Column>
+        </columns>
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Label text="{odataModel>OrderID}" />
+              <Label text="{odataModel>Freight}" />
+              <Label text="{odataModel>ShipAddress}" />
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+    </content>
+    <endButton>
+      <Button text="{i18n>cerrar}" press="onCloseOrders" />
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

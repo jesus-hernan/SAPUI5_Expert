@@ -1,0 +1,56 @@
+_schema-version: "3.2"
+ID: MyFirstProject
+version: 0.0.1
+modules:
+- name: myfirstproject-approuter
+  type: approuter.nodejs
+  path: myfirstproject-approuter
+  requires:
+  - name: MyFirstProject_html_repo_runtime
+  - name: dest_MyFirstProject
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+- name: MyFirstProject_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: MyFirstProject_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - MyFirstProject-content.zip
+      name: MyFirstProject
+      target-path: resources/
+- name: MyFirstProject
+  type: html5
+  path: MyFirstProject
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+resources:
+- name: MyFirstProject_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: MyFirstProject_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: dest_MyFirstProject
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install

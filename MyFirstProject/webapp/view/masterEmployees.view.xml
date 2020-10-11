@@ -1,0 +1,19 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" controllerName="logali.group.MyFirstProject.controller.masterEmployees" displayBlock="true">
+        <Page id="page" title="{i18n>empleados}">
+          <content>
+            <HBox wrap="Wrap">
+              <Label id="labelEmployee" text="{i18n>empleado}" class="sapUiSmallMargin" />
+              <Input id="inputEmployee" value="{/EmployeeID}" maxLength="6" width="100px" class="sapUiSmallMarginEnd" />
+              <Label id="labelCountry" text="{i18n>pais}" class="sapUiSmallMargin" visible="false" />
+              <Select id="slCountry" selectedKey="{/Country}" forceSelection="false" items="{/listCountry}" class="sapUiSmallMarginEnd">
+                <items>
+                  <core:Item key="{key}" text="{text}" />
+                </items>
+              </Select>
+              <Button id="btnFilter" text="{i18n>filtrar}" icon="sap-icon://search" press="onFilter" class="sapUiSmallMarginBegin" />
+              <Button id="btnClearFilter" text="{i18n>limpiarFiltro}" press="onClearFilter" icon="sap-icon://clear-filter" />
+            </HBox>
+            <core:Fragment fragmentName="logali.group.MyFirstProject.fragment.tableEmployee" type="XML" />
+          </content>
+        </Page>
+</mvc:View>
