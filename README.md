@@ -1,3 +1,3 @@
-# SAPUI5_Expert (Final)
+# SAPUI5_Expert
 
 SAPUI5
